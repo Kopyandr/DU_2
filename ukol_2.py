@@ -38,7 +38,7 @@ with open('try_data.csv','r' ) as csv_file:
             year_counter=0 
             datum=line[2]
             rok=int(datum.split('.')[2])
-            print("změna roku iterace")
+            print("změna roku iterace") #koment 
             
         # týdení count 
         if counter==7:
