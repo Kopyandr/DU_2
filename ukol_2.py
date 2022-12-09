@@ -22,7 +22,7 @@ with open('try_data.csv','r' ) as csv_file:
             
         if first_day is None:
             datum=line[2]
-            first_day=int(datum.split('.')[0])   #zde uřadovala ELIška 
+            first_day=int(datum.split('.')[0])   
             month=int(datum.split('.')[1])
              
         
