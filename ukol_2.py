@@ -2,7 +2,7 @@ import csv
 
 
 
-with open('try_data.csv','r' ) as csv_file:
+with open('try_data.csv','r' ) as csv_file, open("vystup_7denni.csv", "w", encoding="utf-8", newline="") as csv_fileout_week,open("vystup_rok.csv", "w", encoding="utf-8", newline="") as csv_outfile_year:
     csv_reader=csv.reader(csv_file) # takhle to vytiskne jako list, ve kterim mužeš makat jako frajer 
 
     total=0
