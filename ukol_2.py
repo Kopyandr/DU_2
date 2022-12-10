@@ -1,5 +1,5 @@
 import csv
-import datetime
+
 try:
     with open('vstup.csv','r' ) as csv_file, open("vystup_7denni.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_rocni.csv", "w", encoding="utf-8", newline="") as csv_test_year:
         csv_reader=csv.reader(csv_file)  
