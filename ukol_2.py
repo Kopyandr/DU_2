@@ -1,7 +1,7 @@
 import csv
 import datetime
 try:
-    with open('data.csv','r' ) as csv_file, open("vystup_test.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_test_year.csv", "w", encoding="utf-8", newline="") as csv_test_year:
+    with open('data.csv','r' ) as csv_file, open("vystup_7deni.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_rocni.csv", "w", encoding="utf-8", newline="") as csv_test_year:
         csv_reader=csv.reader(csv_file)  
 
         writer_week = csv.writer(csv_test_1)
@@ -90,7 +90,7 @@ try:
         writer_week.writerow(prefix + first_day_week+ month+year+ [round(sum_week/counter_week, 4)])
         
         print(f"maximální prutok: {max_prutok,max_date}")
-        print(f"minimální průtok{min_prutok,min_date}")
+        print(f"minimální průtok: {min_prutok,min_date}")
         
         if len(chyby_v_prutoku)!=0:
             print(f"chybné průtoky ve dnech {chyby_v_prutoku}.")
