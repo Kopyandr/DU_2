@@ -1,6 +1,6 @@
 import csv
 
-with open('data.csv','r' ) as csv_file, open("vystup_test.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_test_year.csv", "w", encoding="utf-8", newline="") as csv_test_year:
+with open('try_data_2.csv','r' ) as csv_file, open("vystup_test.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_test_year.csv", "w", encoding="utf-8", newline="") as csv_test_year:
     csv_reader=csv.reader(csv_file) # takhle to vytiskne jako list, ve kterim mužeš makat jako frajer 
 
     writer_week = csv.writer(csv_test_1)
@@ -16,12 +16,22 @@ with open('data.csv','r' ) as csv_file, open("vystup_test.csv", "w", encoding="u
     year_base=0
     month_year=None
     chyby_v_prutoku=[]
+    max_prutok=None
+    min_prutok=None
     
     for line in csv_reader:
         
         datum=line[2]
         year=[int(datum.split('.')[2])]
         
+        if max_prutok is None or float(line[3]) > max_prutok:
+            max_prutok=float(line[3])
+            max_date=[int(datum.split('.')[0]),int(datum.split('.')[1]),int(datum.split('.')[2])]
+            
+        if min_prutok is None or float(line[3]) < min_prutok:
+            min_prutok=float(line[3])
+            min_date=[int(datum.split('.')[0]),int(datum.split('.')[1]),int(datum.split('.')[2])]
+            
         if prefix is None: 
             prefix=line[0:2]
             print(prefix)
@@ -81,3 +91,9 @@ with open('data.csv','r' ) as csv_file, open("vystup_test.csv", "w", encoding="u
         #cyklus skončí před dokončením roku, nebo týdne 
     writer_year.writerow(prefix + first_day_year+ month_year + year_base+ [round(sum_year/counter_year, 4)])
     writer_week.writerow(prefix + first_day+ month+year+ [round(sum_week/counter_week, 4)])
+    
+    print(f"maximální prutok: {max_prutok,max_date}")
+    print(f"minimální průtok{min_prutok,min_date}")
+    
+    if len(chyby_v_prutoku)!=0:
+        print(f"chybné průtoky ve dnech {chyby_v_prutoku}.")
