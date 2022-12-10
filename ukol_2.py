@@ -1,7 +1,7 @@
 import csv
 import datetime
 try:
-    with open('data.csv','r' ) as csv_file, open("vystup_7deni.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_rocni.csv", "w", encoding="utf-8", newline="") as csv_test_year:
+    with open('vstup.csv','r' ) as csv_file, open("vystup_7denni.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_rocni.csv", "w", encoding="utf-8", newline="") as csv_test_year:
         csv_reader=csv.reader(csv_file)  
 
         writer_week = csv.writer(csv_test_1)
@@ -42,6 +42,11 @@ try:
                 first_day_week=[int(datum.split('.')[0])]   
                 month=[int(datum.split('.')[1])]
                 
+            if counter_week==1: # zaznamená datum pro zápis 7denních prutoků 
+                day_write=[int(datum.split('.')[0])]
+                month_write=[int(datum.split('.')[1])]
+                year_write=[int(datum.split('.')[2])]
+                
             
             if first_day_year is None:
                 first_day_year=[int(datum.split('.')[0])] 
@@ -71,7 +76,7 @@ try:
             
             # zapíše průměrný průtok za týden, zapíše datum 1. dne týdnu 
             if counter_week==7:
-                writer_week.writerow(prefix + first_day_week+ month+year+ [round(sum_week/counter_week, 4)])
+                writer_week.writerow(prefix + first_day_week+ month_write+year_write+ [round(sum_week/counter_week, 4)])
                 counter_week=0
                 sum_week=0
                 # Nové datum 
@@ -85,7 +90,7 @@ try:
             counter_year+=1
             sum_year+=float(line[3]) 
             
-            #cyklus skončí před dokončením roku, nebo týdne 
+            #cyklus skončí před dokončením roku, nebo týdne - vypíší se průtsoky za zbilé dny do konce dat 
         writer_year.writerow(prefix + first_day_year+ month_year + year_base+ [round(sum_year/counter_year, 4)])
         writer_week.writerow(prefix + first_day_week+ month+year+ [round(sum_week/counter_week, 4)])
         
@@ -96,6 +101,8 @@ try:
             print(f"chybné průtoky ve dnech {chyby_v_prutoku}.")
     
 except FileNotFoundError:
-    print("Soubor nenalezen,ujistěte se že soubor bude nalezený")
+    print("Soubor nenalezen, ujistěte se že soubor bude nalezený")
 except IndexError:
-    print ("Vadná hodnota")
+    print ("Chyba vstupních dat")
+except ValueError:
+    print ("Hodnota ze souboru je v nesprávném formátu, zkontrolujte data v souboru")
