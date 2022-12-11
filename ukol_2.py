@@ -1,7 +1,7 @@
 import csv
 import datetime 
 try:
-    with open('data_test3.csv','r' ) as csv_file, open("vystup_test.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_test_year.csv", "w", encoding="utf-8", newline="") as csv_test_year:
+    with open('vstup.csv','r' ) as csv_file, open("vystup_7denni.csv", "w", encoding="utf-8", newline="") as csv_test_1, open("vystup_rocni.csv", "w", encoding="utf-8", newline="") as csv_test_year:
         csv_reader=csv.reader(csv_file)  
 
         writer_week = csv.writer(csv_test_1)
@@ -34,10 +34,10 @@ try:
                 if formatted_date!=expected_date:
                     days_missing=(formatted_date-expected_date).days #Počet dní mezi očekávaným a načteným datem
                     for i in range (0, days_missing):
-                        chybejici_data.append(datetime.datetime.strftime(expected_date + datetime.timedelta(days=i), '%d-%m-%Y'))
+                        chybejici_data.append(datetime.datetime.strftime(expected_date + datetime.timedelta(days=i), '%d-%m-%Y')) #Prida do listu s chybejicimi daty vsechna data mezi ocekavanym a nactenym
                     expected_date=formatted_date+datetime.timedelta(days=1)
                 else:
-                    expected_date += datetime.timedelta(days=1)
+                    expected_date += datetime.timedelta(days=1) #Změní očekávané datum na následující den od načteného data
                     
             year=[int(datum.split('.')[2])]
             
@@ -52,7 +52,7 @@ try:
                 
             if prefix is None: 
                 prefix=line[0:2]
-                print(prefix)
+                
             
             if first_day_week is None: #datum prvního počítaného dne 7deního prutoku 
                 first_day_week=[int(datum.split('.')[0])]   
@@ -67,7 +67,7 @@ try:
             if first_day_year is None: #zaznam dne pro zapis do prumerného ročního průtoku 
                 first_day_year=[int(datum.split('.')[0])] 
                 
-            if year_base==0:
+            if year_base==0: # očekávaný rok 
                 year_base= [int(datum.split('.')[2])]
             
             if month_year is None:
