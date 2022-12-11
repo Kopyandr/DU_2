@@ -12,6 +12,7 @@ Program také zachití chybějíci záznami v datech. Chybějící dny vypíše 
 Pokud se v konzoli vypíše "Soubor nenalezen, ujistěte se že soubor bude nalezený" program soubor nenašel v jeho adresáři, nebo nemá správný název. 
 
 Hláška "Chyba vstupních dat" znamená, že vstup obsahuje nesprávná dat nebo v něm data chybí.
+
 "chybné průtoky ve dnech:" program zahlásí, pokud jsou v datech záporné hodnoty průtoku. 
 
 Hláška "Hodnota ze souboru je v nesprávném formátu, zkontrolujte data v souboru" znamená, že data jsou ve špatném formátu, nebo je řádek prázdný. 
